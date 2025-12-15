@@ -24,7 +24,6 @@ let indexEcluindo = null;
 
 console.log(inputNome);
 
-//CREATE
 form.addEventListener("submit", (event) => {
   event.preventDefault();
 
@@ -53,4 +52,101 @@ form.addEventListener("submit", (event) => {
   inputEmail.value = "";
 
   localStorage.setItem("clientes", JSON.stringify(clientes));
+  renderizarTabela();
 });
+
+function renderizarTabela() {
+  tabela.innerHTML = "";
+
+  clientes = JSON.parse(localStorage.getItem("clientes"));
+  clientes.forEach((cliente, index) => {
+    const tr = document.createElement("tr");
+
+    tr.innerHTML = `
+        <td>${cliente.nome}</td>
+        <td>${cliente.sobrenome}</td>
+        <td>${cliente.cpf}</td>
+        <td>${cliente.email}</td>
+    `;
+
+    const tdAcoes = document.createElement("td");
+    tdAcoes.classList.add("acoes");
+
+    const btnEditar = document.createElement("button");
+    const btnExcluir = document.createElement("button");
+
+    btnEditar.classList.add("editar");
+    btnEditar.textContent = "Editar";
+    btnEditar.onclick = () => abrirModalEditar(cliente, index);
+
+    btnExcluir.classList.add("excluir");
+    btnExcluir.textContent = "Excluir";
+    btnExcluir.onclick = () => abrirModalExcluir(index);
+
+    tdAcoes.appendChild(btnEditar);
+    tdAcoes.appendChild(btnExcluir);
+
+    tr.appendChild(tdAcoes);
+
+    tabela.appendChild(tr);
+  });
+}
+
+function abrirModalEditar(cliente, index) {
+  inputEditNome.value = cliente.nome;
+  inputEditSobrenome.value = cliente.sobrenome;
+  inputEditCpf.value = cliente.cpf;
+  inputEditEmail.value = cliente.email;
+
+  indexEditando = index;
+
+  modalEditar.style.display = "flex";
+}
+
+function abrirModalExcluir(index) {
+  indexEcluindo = index;
+  modalExcluir.style.display = "flex";
+}
+
+formEdicao.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const cliente = {
+    nome: inputEditNome.value,
+    sobrenome: inputEditSobrenome.value,
+    cpf: inputEditCpf.value,
+    email: inputEditEmail.value,
+  };
+
+  clientes[indexEditando] = cliente;
+
+  localStorage.setItem("clientes", JSON.stringify(clientes));
+
+  fecharModalEditar();
+
+  renderizarTabela();
+});
+
+function fecharModalEditar() {
+  indexEditando = null;
+  modalEditar.style.display = "none";
+}
+
+function fecharModalExcluir() {
+  indexEcluindo = null;
+  modalExcluir.style.display = "none";
+}
+
+btnCancelarEdicao.addEventListener("click", fecharModalEditar);
+btnCancelarExclusao.addEventListener("click", fecharModalExcluir);
+
+function confirmarExclusao() {
+  clientes.splice(indexEcluindo, 1);
+  localStorage.setItem("clientes", JSON.stringify(clientes));
+  renderizarTabela();
+  fecharModalExcluir();
+}
+
+btnConfirmarExclusao.addEventListener("click", confirmarExclusao);
+
+renderizarTabela();

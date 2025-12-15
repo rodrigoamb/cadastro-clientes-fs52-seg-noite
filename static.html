@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro de Clientes</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Cadastro de Clientes</h1>
+
+      <form id="form-cliente">
+        <input type="text" id="nome" placeholder="Nome" required />
+        <input type="text" id="sobrenome" placeholder="Sobrenome" required />
+        <input type="text" id="cpf" placeholder="CPF" required />
+        <input type="email" id="email" placeholder="Email" required />
+        <button type="submit">Adicionar Cliente</button>
+      </form>
+
+      <div class="lista-clientes">
+        <h2>Clientes Cadastrados</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Sobrenome</th>
+              <th>CPF</th>
+              <th>Email</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>João</td>
+              <td>Silva</td>
+              <td>123.456.789-00</td>
+              <td>joao@email.com</td>
+              <td class="acoes">
+                <button class="editar">Editar</button>
+                <button class="excluir">Excluir</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Maria</td>
+              <td>Oliveira</td>
+              <td>987.654.321-00</td>
+              <td>maria@email.com</td>
+              <td class="acoes">
+                <button class="editar">Editar</button>
+                <button class="excluir">Excluir</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Pedro</td>
+              <td>Souza</td>
+              <td>456.789.123-00</td>
+              <td>pedro@email.com</td>
+              <td class="acoes">
+                <button class="editar">Editar</button>
+                <button class="excluir">Excluir</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
