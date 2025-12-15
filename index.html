@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro de clientes</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Cadastro de clientes</h1>
+
+      <form id="form-cliente">
+        <input type="text" id="nome" placeholder="Nome" />
+        <input type="text" id="sobrenome" placeholder="Sobrenome" />
+        <input type="text" id="cpf" placeholder="CPF" />
+        <input type="email" id="email" placeholder="Email" />
+        <button type="submit">Adicionar Cliente</button>
+      </form>
+
+      <div class="lista-clientes">
+        <h2>Clientes Cadastrados</h2>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Sobrenome</th>
+              <th>CPF</th>
+              <th>Email</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="tabela-clientes"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Modal de edição -->
+    <div class="modal" id="modal-editar">
+      <div class="modal-content">
+        <h2>Editar cliente</h2>
+
+        <form id="form-edicao">
+          <input type="text" id="edit-nome" placeholder="Nome" />
+          <input type="text" id="edit-sobrenome" placeholder="Sobrenome" />
+          <input type="text" id="edit-cpf" placeholder="CPF" />
+          <input type="email" id="edit-email" placeholder="Email" />
+          <button type="submit">Salvar Alterações</button>
+          <button type="button" id="cancelar-edicao">Cancelar</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal de confimação -->
+
+    <div class="modal" id="modal-excluir">
+      <div class="modal-content">
+        <h3>Deseja realmente excluir este cliente?</h3>
+        <button type="button" id="confirmar-exclusao">Sim</button>
+        <button type="button" id="cancelar-exclusao">Não</button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
